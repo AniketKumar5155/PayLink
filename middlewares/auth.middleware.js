@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const verifyToken = require('../utils/jwt/verify_token.jwt.util');
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -6,7 +7,7 @@ const authMiddleware = (req, res, next) => {
         throw new AppError('Unauthorized', 401);
     }
     const token = authHeader.split(' ')[1];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = verifyToken(token);
     req.user = decoded;
     next();
 };

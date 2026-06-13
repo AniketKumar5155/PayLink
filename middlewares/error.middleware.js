@@ -1,8 +1,9 @@
 const jwt = require('jsonwebtoken');
 const z = require('zod');
 const AppError = require('../custom_classes/AppError.custom_class');
+const { Sequelize } = require('../models');
 
-const errorMiddleware = (err, req, res, next) => {
+const errorMiddleware = async (err, req, res, next) => {
     console.error(err);
     let statusCode = 500;
     let message = 'Internal Server Error';
@@ -21,7 +22,7 @@ const errorMiddleware = (err, req, res, next) => {
         statusCode = 401;
         message = err.message || 'Unauthorized';
     }
-    res.status(statusCode).json({ success: false, message });
+    return res.status(statusCode).json({ success: false, message });
 };
 
 module.exports = errorMiddleware;
