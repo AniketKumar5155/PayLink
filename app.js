@@ -9,8 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 const authRoutes = require('./routes/auth.routes');
+const serviceRoutes = require('./routes/services.routes')
+const paymentLinkRoutes = require('./routes/payment_links.routes');
 
 app.use('/api/auth', authRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/payment-links', paymentLinkRoutes);
 
 app.use(errorMiddleware);
 

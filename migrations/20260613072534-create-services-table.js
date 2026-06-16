@@ -30,7 +30,7 @@ module.exports = {
         allowNull: false,
       },
       type: {
-        type: Sequelize.ENUM('LOAN', 'PRODUCT'),
+        type: Sequelize.ENUM('LOAN', 'ONE_TIME', 'PRODUCT'),
         allowNull: false,
       },
       tenure_months: {

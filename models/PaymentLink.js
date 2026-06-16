@@ -27,6 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('PENDING', 'EXPIRED', 'PAID', 'CANCELLED'),
         allowNull: false,
         defaultValue: 'PENDING'
+    },
+    service_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
   }, {
     sequelize,

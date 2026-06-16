@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const verifyToken = require('../utils/jwt/verify_token.jwt.util');
+const AppError = require('../custom_classes/AppError.custom_class');
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;

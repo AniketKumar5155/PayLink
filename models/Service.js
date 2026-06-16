@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
     type: {
-      type: DataTypes.ENUM('LOAN', 'PRODUCT'),
+      type: DataTypes.ENUM('LOAN', 'ONE_TIME', 'PRODUCT'),
       allowNull: false,
     },
     tenure_months: {

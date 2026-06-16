@@ -5,7 +5,7 @@ const getServiceService = async ({
     serviceId,
     userId,
 }) => {
-    const service = await Service.findOne({ where: { id: serviceId, userId } });
+    const service = await Service.findOne({ where: { id: serviceId, user_id: userId } });
     if (!service) throw new AppError('Service not found', 404);
     return service;
 }

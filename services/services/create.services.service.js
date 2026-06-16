@@ -4,14 +4,28 @@ const { Service } = require("../../models");
 const createServiceService = async ({
     name,
     description,
-    price,
+    amount,
+    phone,
+    type,
+    tenure_months,
     isGeneratePaymentLink,
+    status,
     userId
 }) => {
-    const service = await Service.create({ name, description, price, isGeneratePaymentLink, userId });
-    if(isGeneratePaymentLink){
+    const service = await Service.create({
+        name,
+        description,
+        amount,
+        phone,
+        type,
+        tenure_months: type === 'LOAN' ? tenure_months : null,
+        isGeneratePaymentLink,
+        status,
+        user_id: userId
+    });
+    // if(isGeneratePaymentLink){
         // Generate payment link logic here using razorpay and add it to the paymentLink database
-    }
+    // }
     if (!service) throw new AppError('Failed to create service', 500);
     return service;
 }

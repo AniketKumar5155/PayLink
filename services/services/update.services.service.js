@@ -6,17 +6,42 @@ const updateServiceService = async ({
     data,
     userId,
 }) => {
-    const allowedFields = ['name', 'description', 'price'];
+    const allowedFields = [
+        'name',
+        'description',
+        'amount',
+        'phone',
+        'type',
+        'tenure_months',
+        'status'
+    ];
+
     const updateData = {};
+
     for (const field of allowedFields) {
         if (data[field] !== undefined) {
             updateData[field] = data[field];
         }
     }
-    const service = await Service.findOne({ where: { id: serviceId, userId } });
-    if (!service) throw new AppError('Service not found', 404);
+
+    if (updateData.type === 'ONE_TIME') {
+        updateData.tenure_months = null;
+    }
+
+    const service = await Service.findOne({
+        where: {
+            id: serviceId,
+            user_id: userId
+        }
+    });
+
+    if (!service) {
+        throw new AppError('Service not found', 404);
+    }
+
     await service.update(updateData);
+
     return service;
-}
+};
 
 module.exports = updateServiceService;
